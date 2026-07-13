@@ -1,0 +1,489 @@
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight, CheckCircle2, Cpu, Eye, Lock, Radar } from "lucide-react";
+import { ButtonLink } from "@/components/ui/ButtonLink";
+import { HeroBackground } from "@/components/visuals/HeroVisionOverlay";
+import { IncidentTimeline } from "@/components/visuals/IncidentTimeline";
+import { MultiSiteNetwork } from "@/components/visuals/MultiSiteNetwork";
+import { PlatformShowcase } from "@/components/sections/PlatformShowcase";
+import { Reveal } from "@/components/motion/Reveal";
+import { SectionHeader } from "@/components/sections/SectionHeader";
+import { brandAssets, siteConfig } from "@/lib/site";
+import { capabilityPages, deploymentSteps, industryPages, securityItems } from "@/lib/data";
+
+export function Hero() {
+  return (
+    <section className="relative min-h-[100svh] overflow-hidden">
+      <HeroBackground />
+
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-center px-5 pb-24 pt-28 sm:px-6 lg:px-8">
+        <div className="animate-fade-rise max-w-xl lg:max-w-2xl">
+          <p className="mb-5 font-display text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-white/65">
+            Visrax
+          </p>
+          <h1 className="font-display text-balance text-5xl font-semibold leading-[0.98] tracking-tightest text-white sm:text-6xl lg:text-[4.35rem]">
+            Turn your existing cameras into intelligent monitoring systems.
+          </h1>
+          <p className="mt-6 max-w-xl text-base leading-8 text-white/70 sm:text-lg sm:leading-8">
+            Real-time detection, tracking, alerts, analytics, and multi-site operational visibility — so your team knows what matters without watching every screen.
+          </p>
+          <div className="mt-9">
+            <ButtonLink href="/request-demo" variant="light">
+              Request a Demo
+            </ButtonLink>
+          </div>
+        </div>
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-[#030303] to-transparent" />
+    </section>
+  );
+}
+
+export function TrustBar() {
+  const items = [
+    { label: "Use the cameras you have", detail: "No need to replace your current setup" },
+    { label: "Spot what matters instantly", detail: "People, vehicles, and important activity" },
+    { label: "Get clear alerts", detail: "Your team is notified when action is needed" },
+    { label: "See every location", detail: "One place to monitor all your sites" }
+  ];
+
+  return (
+    <section className="relative border-y border-white/[0.07] bg-black/40 py-10">
+      <div className="mx-auto grid max-w-7xl gap-6 px-5 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+        {items.map((item, index) => (
+          <Reveal key={item.label} delay={index * 0.05} className="border-white/[0.06] lg:border-r lg:pr-6 lg:last:border-r-0">
+            <p className="font-display text-sm font-semibold text-white">{item.label}</p>
+            <p className="mt-1.5 text-sm text-white/40">{item.detail}</p>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function BrandStatement() {
+  const flow = ["Your cameras", "Detection", "Tracking", "Alerts", "Action", "Reports"];
+  return (
+    <section className="soft-divider border-y section-alt py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          align="center"
+          title={
+            <>
+              Your cameras already record.
+              <br />
+              <span className="text-gradient">Visrax</span> helps you respond.
+            </>
+          }
+          copy={siteConfig.description}
+        />
+        <Reveal className="mt-16 grid gap-3 md:grid-cols-6">
+          {flow.map((item, index) => (
+            <div key={item} className="surface-card relative p-5 text-center">
+              <span className="font-mono text-[0.65rem] font-medium tracking-[0.2em] text-accent">0{index + 1}</span>
+              <p className="mt-4 font-display text-base font-semibold text-white sm:text-lg">{item}</p>
+              {index < flow.length - 1 ? (
+                <span className="absolute right-[-6px] top-1/2 z-10 hidden h-px w-3 bg-gradient-to-r from-white/30 to-transparent md:block" />
+              ) : null}
+            </div>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function HowItWorksSection() {
+  const steps = [
+    {
+      title: "Start with the cameras you already have.",
+      copy: "We connect to the views your team already uses — entrances, floors, warehouses, parking areas, and restricted spaces.",
+      labels: ["Head Office", "Warehouse 02", "Parking Entrance"]
+    },
+    {
+      title: "Tell Visrax what to watch for.",
+      copy: "Choose the situations that matter to your business: someone in a restricted area, a vehicle at the gate, a queue building up, or missing safety gear.",
+      labels: ["Restricted entry", "Safety gear check", "Queue buildup"]
+    },
+    {
+      title: "Get alerts your team can act on.",
+      copy: "When something important happens, Visrax sends a clear alert with the details and evidence — so the right people can respond quickly.",
+      labels: ["Alert sent", "Evidence saved", "Issue closed"]
+    }
+  ];
+
+  return (
+    <section className="py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="How it works"
+          title="Simple to set up. Easy for any team to use."
+          copy="You do not need a technical background. Visrax is built for operations, safety, and facility teams who need clear answers — not more screens to watch."
+        />
+        <div className="mt-16 grid gap-4">
+          {steps.map((step, index) => (
+            <Reveal key={step.title} delay={index * 0.04}>
+              <div className="premium-surface grid gap-8 p-6 md:grid-cols-[0.9fr_1fr] md:p-9">
+                <div className="relative z-10">
+                  <span className="font-mono text-[0.7rem] font-medium tracking-[0.2em] text-accent">0{index + 1}</span>
+                  <h3 className="mt-5 font-display text-balance text-3xl font-semibold leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
+                    {step.title}
+                  </h3>
+                  <p className="mt-5 max-w-xl text-base leading-7 text-white/50">{step.copy}</p>
+                </div>
+                <div className="relative z-10 grid content-center gap-2.5">
+                  {step.labels.map((label, itemIndex) => (
+                    <div
+                      key={label}
+                      className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.025] px-5 py-4"
+                    >
+                      <span className="text-sm text-white/65">{label}</span>
+                      <span className="rounded-md bg-white/[0.05] px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white/40">
+                        {itemIndex === 0 ? "Priority" : "Set up"}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function PlatformSection() {
+  return (
+    <section id="platform" className="py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Platform"
+          title="One monitoring system for every location."
+          copy="Live camera views, detection, alerts, reports, and camera health — all in one place your team can actually use."
+        />
+        <Reveal className="mt-14">
+          <PlatformShowcase />
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function CapabilitiesSection() {
+  return (
+    <section id="capabilities" className="soft-divider border-y section-alt py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="What Visrax can detect"
+          title="Object detection and monitoring built around your workplace."
+          copy="Choose the checks that match how your site runs — from people and vehicles to safety zones and busy areas."
+        />
+        <div className="mt-14 grid gap-3 lg:grid-cols-2">
+          {capabilityPages.slice(0, 10).map((item, index) => (
+            <Reveal key={item.slug} delay={index * 0.03}>
+              <Link
+                href={`/capabilities/${item.slug}`}
+                className="group surface-card grid min-h-52 p-7 transition duration-200 hover:-translate-y-0.5"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-[#214cff]/15 to-[#7c3cff]/10">
+                    <item.icon aria-hidden className="h-5 w-5 text-accent" />
+                  </div>
+                  <ArrowRight
+                    aria-hidden
+                    className="h-5 w-5 text-white/20 transition group-hover:translate-x-1 group-hover:text-white"
+                  />
+                </div>
+                <div className="mt-10">
+                  <h3 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-white/50">{item.description}</p>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function IndustriesSection() {
+  const featured = industryPages.slice(0, 6);
+  return (
+    <section id="industries" className="py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Industries"
+          title="Built for the places where people, vehicles, and work never stop."
+          copy="Factories, warehouses, offices, retail floors, roads, and more — Visrax adapts to the way each site operates."
+        />
+        <div className="mt-14 grid gap-4 lg:grid-cols-3">
+          {featured.map((industry, index) => (
+            <Reveal key={industry.slug} delay={index * 0.04}>
+              <Link
+                href={`/industries/${industry.slug}`}
+                className="group block min-h-[340px] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition duration-200 hover:-translate-y-0.5 hover:border-white/18"
+              >
+                <div className="relative h-44 border-b border-white/[0.08]">
+                  <div className="absolute inset-0 feed-gradient" />
+                  <div className="absolute inset-0 technical-grid opacity-30" />
+                  <div className="absolute bottom-5 left-5 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-black/40 backdrop-blur-md">
+                    <industry.icon aria-hidden className="h-5 w-5 text-accent" />
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">{industry.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-white/50">{industry.description}</p>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal className="mt-8 flex flex-wrap gap-2">
+          {industryPages.slice(6).map((industry) => (
+            <Link
+              key={industry.slug}
+              className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-2.5 text-sm text-white/50 transition hover:border-white/20 hover:text-white"
+              href={`/industries/${industry.slug}`}
+            >
+              {industry.title}
+            </Link>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function UseCasesSection() {
+  return (
+    <section className="soft-divider relative overflow-hidden border-y bg-[#030303] py-20 lg:py-28">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_30%,rgba(33,76,255,0.12),transparent_32rem)]" />
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="max-w-3xl">
+          <SectionHeader
+            eyebrow="Everyday monitoring needs"
+            title="Catch the moments no one can watch all day."
+            copy="Configure Visrax around the operational signals that matter most, then let teams review the events that deserve attention."
+          />
+        </div>
+        <Reveal className="mt-10 lg:mt-12">
+          <MonitoringNeedsVisual />
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function MonitoringNeedsVisual() {
+  const content = [
+    ["Real environments", "Monitor factories, warehouses, entrances, parking areas, and shared spaces from existing camera views."],
+    ["Actionable events", "Convert activity into incidents, evidence, alerts, and analytics your team can actually review."],
+    ["Focused response", "Prioritize the situations that matter: safety, security, occupancy, queues, vehicles, and restricted zones."]
+  ];
+
+  return (
+    <div className="premium-surface overflow-hidden p-3">
+      <div className="relative overflow-hidden rounded-[1.35rem] border border-white/10 bg-black">
+        <div className="relative aspect-[16/7] min-h-[460px]">
+          <Image
+            src="/images/monitoring-needs-premium.png"
+            alt="Dark warehouse environment with subtle computer vision monitoring overlays"
+            fill
+            sizes="(min-width: 1280px) 1180px, 100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/18 to-transparent" />
+          <div className="absolute left-5 top-5 rounded-full border border-white/10 bg-black/45 px-3 py-2 text-xs text-white/62 backdrop-blur-md">
+            Demo monitoring view
+          </div>
+          <div className="absolute bottom-6 left-6 right-6 max-w-3xl">
+            <p className="font-display text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+              See operational activity as it happens.
+            </p>
+            <p className="mt-4 max-w-xl text-sm leading-6 text-white/62 sm:text-base sm:leading-7">
+              A cleaner way to understand movement, safety, queues, vehicles, occupancy, and restricted-area events across active sites.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid gap-px border-t border-white/10 bg-white/10 md:grid-cols-3">
+          {content.map(([title, copy]) => (
+            <div key={title} className="bg-[#070707] p-5">
+              <p className="font-display text-base font-semibold text-white">{title}</p>
+              <p className="mt-3 text-sm leading-6 text-white/52">{copy}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function MultiLocationSection() {
+  return (
+    <section className="py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Multiple locations"
+          title="See every site from one screen."
+          copy="Offices, factories, warehouses, shops, and remote sites — monitor them together instead of jumping between separate systems."
+        />
+        <Reveal className="mt-14">
+          <MultiSiteNetwork />
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function IntegrationSection() {
+  const icons = [Eye, Cpu, Radar];
+  const items = ["Your existing cameras", "Visrax monitoring", "Alerts and reports"];
+  return (
+    <section className="soft-divider border-y section-alt py-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          align="center"
+          eyebrow="Works with what you have"
+          title="Add smarter monitoring without replacing your cameras."
+          copy="If your cameras already cover the areas that matter, Visrax can turn that coverage into detection, tracking, alerts, and clear reports."
+        />
+        <Reveal className="mx-auto mt-14 grid max-w-5xl gap-3 md:grid-cols-3">
+          {items.map((item, index) => {
+            const Icon = icons[index];
+            return (
+              <div key={item} className="surface-card relative p-8 text-center">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-[#214cff]/20 to-[#7c3cff]/10">
+                  <Icon aria-hidden className="h-5 w-5 text-accent" />
+                </div>
+                <p className="mt-5 font-display text-lg font-semibold text-white">{item}</p>
+                {index < 2 ? (
+                  <span className="absolute right-[-6px] top-1/2 z-10 hidden h-px w-3 bg-gradient-to-r from-white/25 to-transparent md:block" />
+                ) : null}
+              </div>
+            );
+          })}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function IncidentSection() {
+  return (
+    <section className="py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="When something happens"
+          title="From alert to resolved — with a clear record."
+          copy="Every important event becomes a simple case your team can review, assign, comment on, and close — with the camera evidence attached."
+        />
+        <Reveal className="mt-14">
+          <IncidentTimeline />
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function DeploymentSection() {
+  return (
+    <section className="py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Getting started"
+          title="Begin with one site. Grow when you are ready."
+          copy="Most teams start with a focused pilot, prove the value, then expand to more cameras and locations."
+        />
+        <div className="mt-14 grid gap-3 lg:grid-cols-5">
+          {deploymentSteps.map(([title, copy], index) => (
+            <Reveal key={title} delay={index * 0.04}>
+              <div className="surface-card min-h-52 p-6">
+                <span className="font-mono text-[0.65rem] font-medium tracking-[0.2em] text-accent">0{index + 1}</span>
+                <h3 className="mt-8 font-display text-lg font-semibold tracking-tight text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-white/50">{copy}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal className="mt-8 grid gap-3 text-sm text-white/55 md:grid-cols-3">
+          {["Works with many existing cameras", "Can run on-site if needed", "Roll out location by location"].map((item) => (
+            <p key={item} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4">
+              <CheckCircle2 aria-hidden className="h-4 w-4 shrink-0 text-accent" />
+              {item}
+            </p>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function SecuritySection() {
+  return (
+    <section className="soft-divider border-y section-alt py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Privacy and access"
+          title="Your footage stays under your control."
+          copy="Decide who can see what, how long recordings are kept, and which sites each person can access."
+        />
+        <Reveal className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {securityItems.map((item) => (
+            <div
+              key={item}
+              className="flex min-h-24 items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-5 text-sm text-white/55"
+            >
+              <Lock aria-hidden className="h-4 w-4 shrink-0 text-accent" />
+              {item}
+            </div>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function FinalCta() {
+  return (
+    <section className="relative overflow-hidden py-28 lg:py-36">
+      <div className="absolute inset-0 hero-field opacity-80" />
+      <div className="absolute inset-0 technical-grid opacity-30" />
+      <div className="relative mx-auto max-w-4xl px-5 text-center sm:px-6 lg:px-8">
+        <Reveal>
+          <div className="mb-10 flex flex-col items-center gap-3">
+            <Image
+              src={brandAssets.mark}
+              alt=""
+              width={48}
+              height={48}
+              className="h-12 w-12 object-contain opacity-90"
+            />
+            <Image
+              src={brandAssets.wordmark}
+              alt="Visrax"
+              width={180}
+              height={36}
+              className="h-7 w-auto object-contain opacity-90"
+            />
+          </div>
+          <h2 className="font-display text-balance text-4xl font-semibold leading-[1.02] tracking-tightest text-white sm:text-5xl lg:text-6xl">
+            Turn your existing cameras into intelligent monitoring systems.
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/50">
+            See how Visrax delivers real-time detection, tracking, alerts, analytics, and multi-site operational visibility for your team.
+          </p>
+          <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+            <ButtonLink href="/request-demo">Request a Demo</ButtonLink>
+            <ButtonLink href="/solutions" variant="secondary">
+              Explore Solutions
+            </ButtonLink>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
