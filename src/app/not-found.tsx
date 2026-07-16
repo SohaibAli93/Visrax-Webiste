@@ -2,7 +2,7 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 
 export default function NotFound() {
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 py-28">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-20">
       <div className="absolute inset-0 hero-field opacity-70" />
       <section className="relative max-w-2xl text-center">
         <p className="eyebrow justify-center before:hidden">404</p>

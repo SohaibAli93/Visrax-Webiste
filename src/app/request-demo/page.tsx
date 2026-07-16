@@ -17,7 +17,7 @@ export default function RequestDemoPage() {
       <main className="page-shell">
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 hero-field opacity-50" />
-          <div className="relative mx-auto grid max-w-7xl gap-12 px-5 pb-28 pt-16 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+          <div className="relative mx-auto grid max-w-[88rem] gap-12 px-4 pb-20 pt-14 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
             <SectionHeader
               eyebrow="Request a Demo"
               title="See how Visrax works with your cameras."

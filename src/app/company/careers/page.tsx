@@ -16,7 +16,7 @@ export default function CareersPage() {
       <main className="page-shell">
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 hero-field opacity-40" />
-          <div className="relative mx-auto max-w-7xl px-5 pb-28 pt-16 sm:px-6 lg:px-8">
+          <div className="relative mx-auto max-w-[88rem] px-4 pb-20 pt-14 sm:px-6 lg:px-8">
             <SectionHeader
               eyebrow="Careers"
               title="Build visual intelligence for real-world operations."

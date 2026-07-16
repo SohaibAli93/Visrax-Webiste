@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle2, Cpu, Eye, Lock, Radar } from "lucide-react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { HeroBackground } from "@/components/visuals/HeroVisionOverlay";
+import { HeroSlider } from "@/components/sections/HeroSlider";
+import { IndustriesCarousel } from "@/components/sections/IndustriesCarousel";
 import { IncidentTimeline } from "@/components/visuals/IncidentTimeline";
 import { MultiSiteNetwork } from "@/components/visuals/MultiSiteNetwork";
 import { PlatformShowcase } from "@/components/sections/PlatformShowcase";
@@ -12,32 +13,7 @@ import { brandAssets, siteConfig } from "@/lib/site";
 import { capabilityPages, deploymentSteps, industryPages, securityItems } from "@/lib/data";
 
 export function Hero() {
-  return (
-    <section className="relative min-h-[100svh] overflow-hidden">
-      <HeroBackground />
-
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-center px-5 pb-24 pt-28 sm:px-6 lg:px-8">
-        <div className="animate-fade-rise max-w-xl lg:max-w-2xl">
-          <p className="mb-5 font-display text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-white/65">
-            Visrax
-          </p>
-          <h1 className="font-display text-balance text-5xl font-semibold leading-[0.98] tracking-tightest text-white sm:text-6xl lg:text-[4.35rem]">
-            Turn your existing cameras into intelligent monitoring systems.
-          </h1>
-          <p className="mt-6 max-w-xl text-base leading-8 text-white/70 sm:text-lg sm:leading-8">
-            Real-time detection, tracking, alerts, analytics, and multi-site operational visibility — so your team knows what matters without watching every screen.
-          </p>
-          <div className="mt-9">
-            <ButtonLink href="/request-demo" variant="light">
-              Request a Demo
-            </ButtonLink>
-          </div>
-        </div>
-      </div>
-
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-[#030303] to-transparent" />
-    </section>
-  );
+  return <HeroSlider />;
 }
 
 export function TrustBar() {
@@ -50,7 +26,7 @@ export function TrustBar() {
 
   return (
     <section className="relative border-y border-white/[0.07] bg-black/40 py-10">
-      <div className="mx-auto grid max-w-7xl gap-6 px-5 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-[88rem] gap-6 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
         {items.map((item, index) => (
           <Reveal key={item.label} delay={index * 0.05} className="border-white/[0.06] lg:border-r lg:pr-6 lg:last:border-r-0">
             <p className="font-display text-sm font-semibold text-white">{item.label}</p>
@@ -65,8 +41,8 @@ export function TrustBar() {
 export function BrandStatement() {
   const flow = ["Your cameras", "Detection", "Tracking", "Alerts", "Action", "Reports"];
   return (
-    <section className="soft-divider border-y section-alt py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+    <section className="soft-divider border-y section-alt py-16 lg:py-20">
+      <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
         <SectionHeader
           align="center"
           title={
@@ -114,8 +90,8 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+    <section className="py-16 lg:py-20">
+      <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="How it works"
           title="Simple to set up. Easy for any team to use."
@@ -156,8 +132,8 @@ export function HowItWorksSection() {
 
 export function PlatformSection() {
   return (
-    <section id="platform" className="py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+    <section id="platform" className="py-16 lg:py-20">
+      <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Platform"
           title="One monitoring system for every location."
@@ -173,8 +149,8 @@ export function PlatformSection() {
 
 export function CapabilitiesSection() {
   return (
-    <section id="capabilities" className="soft-divider border-y section-alt py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+    <section id="capabilities" className="soft-divider border-y section-alt py-16 lg:py-20">
+      <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="What Visrax can detect"
           title="Object detection and monitoring built around your workplace."
@@ -209,48 +185,35 @@ export function CapabilitiesSection() {
   );
 }
 
+const INDUSTRY_IMAGES: Record<string, string> = {
+  manufacturing: "/images/sections/industries/industry-manufacturing.png",
+  "offices-commercial-buildings": "/images/sections/industries/industry-offices.png",
+  "warehousing-logistics": "/images/sections/industries/industry-warehousing.png",
+  "textile-manufacturing": "/images/sections/industries/industry-textile.png",
+  retail: "/images/sections/industries/industry-retail.png",
+  "traffic-transportation": "/images/sections/industries/industry-traffic.png"
+};
+
 export function IndustriesSection() {
-  const featured = industryPages.slice(0, 6);
+  const featured = industryPages
+    .filter((industry) => INDUSTRY_IMAGES[industry.slug])
+    .map((industry) => ({
+      slug: industry.slug,
+      title: industry.title,
+      eyebrow: industry.eyebrow,
+      image: INDUSTRY_IMAGES[industry.slug]
+    }));
+
   return (
-    <section id="industries" className="py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+    <section id="industries" className="py-16 lg:py-20">
+      <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Industries"
-          title="Built for the places where people, vehicles, and work never stop."
-          copy="Factories, warehouses, offices, retail floors, roads, and more — Visrax adapts to the way each site operates."
+          title="Built for where work never stops."
+          copy="Factories, warehouses, offices, retail floors, and roads — Visrax adapts to the way each site operates."
         />
-        <div className="mt-14 grid gap-4 lg:grid-cols-3">
-          {featured.map((industry, index) => (
-            <Reveal key={industry.slug} delay={index * 0.04}>
-              <Link
-                href={`/industries/${industry.slug}`}
-                className="group block min-h-[340px] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition duration-200 hover:-translate-y-0.5 hover:border-white/18"
-              >
-                <div className="relative h-44 border-b border-white/[0.08]">
-                  <div className="absolute inset-0 feed-gradient" />
-                  <div className="absolute inset-0 technical-grid opacity-30" />
-                  <div className="absolute bottom-5 left-5 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-black/40 backdrop-blur-md">
-                    <industry.icon aria-hidden className="h-5 w-5 text-accent" />
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">{industry.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-white/50">{industry.description}</p>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal className="mt-8 flex flex-wrap gap-2">
-          {industryPages.slice(6).map((industry) => (
-            <Link
-              key={industry.slug}
-              className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-2.5 text-sm text-white/50 transition hover:border-white/20 hover:text-white"
-              href={`/industries/${industry.slug}`}
-            >
-              {industry.title}
-            </Link>
-          ))}
+        <Reveal className="mt-12">
+          <IndustriesCarousel items={featured} />
         </Reveal>
       </div>
     </section>
@@ -259,9 +222,9 @@ export function IndustriesSection() {
 
 export function UseCasesSection() {
   return (
-    <section className="soft-divider relative overflow-hidden border-y bg-[#030303] py-20 lg:py-28">
+    <section className="soft-divider relative overflow-hidden border-y bg-[#030303] py-16 lg:py-20">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_30%,rgba(33,76,255,0.12),transparent_32rem)]" />
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <SectionHeader
             eyebrow="Everyday monitoring needs"
@@ -324,8 +287,8 @@ function MonitoringNeedsVisual() {
 
 export function MultiLocationSection() {
   return (
-    <section className="py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+    <section className="py-16 lg:py-20">
+      <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Multiple locations"
           title="See every site from one screen."
@@ -343,8 +306,8 @@ export function IntegrationSection() {
   const icons = [Eye, Cpu, Radar];
   const items = ["Your existing cameras", "Visrax monitoring", "Alerts and reports"];
   return (
-    <section className="soft-divider border-y section-alt py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+    <section className="soft-divider border-y section-alt py-20">
+      <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
         <SectionHeader
           align="center"
           eyebrow="Works with what you have"
@@ -374,8 +337,8 @@ export function IntegrationSection() {
 
 export function IncidentSection() {
   return (
-    <section className="py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+    <section className="py-16 lg:py-20">
+      <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="When something happens"
           title="From alert to resolved — with a clear record."
@@ -391,8 +354,8 @@ export function IncidentSection() {
 
 export function DeploymentSection() {
   return (
-    <section className="py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+    <section className="py-16 lg:py-20">
+      <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Getting started"
           title="Begin with one site. Grow when you are ready."
@@ -424,8 +387,8 @@ export function DeploymentSection() {
 
 export function SecuritySection() {
   return (
-    <section className="soft-divider border-y section-alt py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+    <section className="soft-divider border-y section-alt py-16 lg:py-20">
+      <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Privacy and access"
           title="Your footage stays under your control."
@@ -449,10 +412,10 @@ export function SecuritySection() {
 
 export function FinalCta() {
   return (
-    <section className="relative overflow-hidden py-28 lg:py-36">
+    <section className="relative overflow-hidden py-16 lg:py-20">
       <div className="absolute inset-0 hero-field opacity-80" />
       <div className="absolute inset-0 technical-grid opacity-30" />
-      <div className="relative mx-auto max-w-4xl px-5 text-center sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>
           <div className="mb-10 flex flex-col items-center gap-3">
             <Image

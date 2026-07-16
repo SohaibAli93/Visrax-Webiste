@@ -15,3 +15,6 @@ pnpm-debug.log*
 
 tsconfig.tsbuildinfo
 .DS_Store
+
+# Intermediate image-generation workspace (site assets live in public/)
+generated-images/

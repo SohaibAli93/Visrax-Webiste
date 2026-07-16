@@ -46,7 +46,7 @@ export function Footer() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#214cff]/50 to-transparent" />
       <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[40rem] -translate-x-1/2 rounded-full bg-[#214cff]/[0.07] blur-3xl" />
 
-      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[88rem] px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-14 lg:grid-cols-[1.15fr_2fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-3">

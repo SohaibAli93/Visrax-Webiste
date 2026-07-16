@@ -26,7 +26,7 @@ export function ListingPage({
       <main className="page-shell">
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 hero-field opacity-60" />
-          <div className="relative mx-auto grid max-w-7xl gap-12 px-5 pb-24 pt-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:pb-32">
+          <div className="relative mx-auto grid max-w-[88rem] gap-12 px-4 pb-24 pt-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:pb-32">
             <Reveal>
               <p className="eyebrow">{eyebrow}</p>
               <h1 className="mt-5 font-display text-balance text-5xl font-semibold leading-[0.95] tracking-tightest text-white sm:text-6xl lg:text-7xl">
@@ -39,8 +39,8 @@ export function ListingPage({
             </Reveal>
           </div>
         </section>
-        <section className="soft-divider border-t section-alt py-24 lg:py-28">
-          <div className="mx-auto grid max-w-7xl gap-4 px-5 sm:px-6 lg:grid-cols-3 lg:px-8">
+        <section className="soft-divider border-t section-alt py-16 lg:py-20">
+          <div className="mx-auto grid max-w-[88rem] gap-4 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
             {pages.map((page, index) => (
               <Reveal key={page.slug} delay={index * 0.03}>
                 <Link
@@ -80,7 +80,7 @@ export function DetailTemplate({ page, basePath, parentLabel }: { page: DetailPa
       <main className="page-shell">
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 hero-field opacity-60" />
-          <div className="relative mx-auto grid max-w-7xl gap-12 px-5 pb-24 pt-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:pb-32">
+          <div className="relative mx-auto grid max-w-[88rem] gap-12 px-4 pb-24 pt-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:pb-32">
             <Reveal>
               <p className="eyebrow">{page.eyebrow}</p>
               <h1 className="mt-5 font-display text-balance text-5xl font-semibold leading-[0.95] tracking-tightest text-white sm:text-6xl lg:text-7xl">
@@ -99,8 +99,8 @@ export function DetailTemplate({ page, basePath, parentLabel }: { page: DetailPa
             </Reveal>
           </div>
         </section>
-        <section className="soft-divider border-y section-alt py-24 lg:py-28">
-          <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <section className="soft-divider border-y section-alt py-16 lg:py-20">
+          <div className="mx-auto grid max-w-[88rem] gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
             <SectionHeader
               eyebrow="Operational fit"
               title={`${page.title} for the way your site actually runs.`}
@@ -121,8 +121,8 @@ export function DetailTemplate({ page, basePath, parentLabel }: { page: DetailPa
             </Reveal>
           </div>
         </section>
-        <section className="py-24">
-          <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <section className="py-20">
+          <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
             <SectionHeader eyebrow="Examples" title="Set up for the situations your team needs to catch." />
             <div className="mt-12 grid gap-3 md:grid-cols-3">
               {page.useCases.map((item, index) => (
@@ -158,7 +158,7 @@ export function ArticleListPage({
       <main className="page-shell">
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 hero-field opacity-50" />
-          <div className="relative mx-auto max-w-7xl px-5 pb-24 pt-16 sm:px-6 lg:px-8">
+          <div className="relative mx-auto max-w-[88rem] px-4 pb-24 pt-14 sm:px-6 lg:px-8">
             <Reveal className="max-w-3xl">
               <h1 className="font-display text-balance text-5xl font-semibold leading-[0.95] tracking-tightest text-white sm:text-6xl lg:text-7xl">
                 {title}
@@ -207,7 +207,7 @@ export function ArticleDetailPage({
         ]}
       />
       <main className="page-shell">
-        <article className="relative mx-auto max-w-3xl px-5 pb-28 pt-16 sm:px-6 lg:px-8">
+        <article className="relative mx-auto max-w-3xl px-4 pb-20 pt-14 sm:px-6 lg:px-8">
           <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-80 hero-field opacity-40" />
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">{article.category}</p>

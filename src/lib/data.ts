@@ -51,7 +51,6 @@ export const navGroups: NavGroup[] = [
     label: "Platform",
     href: "/platform",
     items: [
-      { label: "Platform Overview", href: "/platform" },
       { label: "Live Monitoring", href: "/platform/live-monitoring" },
       { label: "Detection and Tracking", href: "/platform/detection-tracking" },
       { label: "Alerts and Incidents", href: "/platform/alerts-incidents" },
@@ -98,7 +97,6 @@ export const navGroups: NavGroup[] = [
     label: "Insights",
     href: "/insights",
     items: [
-      { label: "Insights", href: "/insights" },
       { label: "Case Studies", href: "/case-studies" }
     ]
   },

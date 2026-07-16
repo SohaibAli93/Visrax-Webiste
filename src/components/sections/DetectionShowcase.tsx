@@ -238,10 +238,10 @@ export function DetectionShowcase() {
   const current = tabs[active];
 
   return (
-    <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#040405] py-24 lg:py-32">
+    <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#040405] py-16 lg:py-20">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_80%_50%,rgba(33,76,255,0.08),transparent_70%)]" />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-5 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-8">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-8">
         <div className="min-w-0">
           <p className="eyebrow mb-5">Detection showcase</p>
           <h2 className="font-display text-4xl font-semibold leading-[1.06] tracking-tightest text-white sm:text-5xl">

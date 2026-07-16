@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { brandAssets } from "@/lib/site";
 import { navGroups } from "@/lib/data";
@@ -37,7 +37,7 @@ export function Header() {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-ink"
@@ -45,13 +45,13 @@ export function Header() {
         Skip to content
       </a>
       <div
-        className={`border-b transition-colors duration-300 ${
+        className={`mx-auto max-w-[88rem] rounded-full border transition-all duration-300 ${
           scrolled || open || activeMenu
-            ? "border-white/[0.08] bg-[#030303]/88 backdrop-blur-xl"
-            : "border-transparent bg-transparent"
+            ? "border-white/[0.09] bg-[#0a0a0c]/90 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur-2xl"
+            : "border-white/[0.06] bg-[#0a0a0c]/70 shadow-[0_16px_50px_-24px_rgba(0,0,0,0.55)] backdrop-blur-xl"
         }`}
       >
-        <div className="mx-auto flex h-[4.25rem] max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
+        <div className="relative flex h-16 items-center justify-between gap-4 px-4 sm:h-[4.25rem] sm:px-6 lg:pl-7 lg:pr-3">
           <Link href="/" className="relative z-10 flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan">
             <Image
               src={brandAssets.mark}
@@ -71,7 +71,10 @@ export function Header() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary navigation">
+          <nav
+            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-0.5 lg:flex"
+            aria-label="Primary navigation"
+          >
             {navGroups.map((group) => (
               <div
                 key={group.label}
@@ -127,13 +130,14 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-1 lg:flex">
-            <ButtonLink href="/company/contact" variant="ghost">
-              Contact
-            </ButtonLink>
-            <ButtonLink href="/request-demo" variant="light" className="ml-2 !min-h-10 !px-5 !py-2.5 text-[0.8125rem]">
+          <div className="hidden items-center lg:flex">
+            <Link
+              href="/request-demo"
+              className="group inline-flex min-h-11 items-center gap-1.5 rounded-full bg-gradient-to-r from-[#214cff] to-[#4d6bff] px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-[0_10px_30px_-8px_rgba(33,76,255,0.5)] transition duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+            >
               Request a Demo
-            </ButtonLink>
+              <ArrowUpRight aria-hidden className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
 
           <button
@@ -148,7 +152,7 @@ export function Header() {
       </div>
 
       {open ? (
-        <div className="h-[calc(100dvh-4.25rem)] overflow-y-auto border-b border-white/10 bg-[#030303]/98 px-5 pb-10 pt-2 backdrop-blur-xl lg:hidden">
+        <div className="mx-auto mt-2 max-h-[calc(100dvh-6rem)] max-w-6xl overflow-y-auto rounded-3xl border border-white/10 bg-[#050506]/95 px-4 pb-8 pt-3 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur-2xl lg:hidden">
           <nav aria-label="Mobile navigation" className="mx-auto max-w-lg">
             {navGroups.map((group) => (
               <details key={group.label} className="border-b border-white/[0.08] py-1" open={group.label === "Platform"}>

@@ -30,7 +30,7 @@ function LegalPage({ title, path, intro, items }: { title: string; path: string;
       <main className="page-shell">
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 hero-field opacity-30" />
-          <div className="relative mx-auto max-w-3xl px-5 pb-28 pt-16 sm:px-6 lg:px-8">
+          <div className="relative mx-auto max-w-3xl px-4 pb-20 pt-14 sm:px-6 lg:px-8">
             <h1 className="font-display text-5xl font-semibold tracking-tightest text-white sm:text-6xl">{title}</h1>
             <p className="mt-6 text-lg leading-8 text-white/55">{intro}</p>
             <div className="mt-12 grid gap-3 text-white/60">
