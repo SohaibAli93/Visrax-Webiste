@@ -15,15 +15,16 @@ export function absoluteUrl(path = "/") {
 }
 
 export const brandAssets = {
-  logo: "/brand/visrax_logo_web_transparent.png",
-  wordmark: "/brand/visrax-wordmark-clean.png",
-  mark: "/brand/visrax-mark-clean.png",
-  tagline: "/brand/visrax-tagline-clean.png",
+  logo: "/brand/logo-lockup-dark.png",
+  lockupLight: "/brand/logo-lockup-light.png",
+  wordmark: "/brand/logo-wordmark.png",
+  mark: "/brand/logo-mark.png",
+  tagline: "/brand/logo-tagline.png",
   showcaseDetection: "/brand/showcase-detection.png",
   showcaseZones: "/brand/showcase-zones.png",
   showcaseTracking: "/brand/showcase-tracking.png",
   banner: "/brand/banner.png",
   icon: "/brand/icon.png",
-  appLogo: "/brand/app logo.png",
+  appLogo: "/brand/logo-lockup-dark.png",
   og: "/brand/banner.png"
 };

@@ -41,8 +41,8 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(33, 76, 255, 0.14), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 90% 10%, rgba(124, 60, 255, 0.08), transparent 45%),
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(33, 76, 255, 0.10), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 90% 10%, rgba(124, 60, 255, 0.06), transparent 45%),
     #030303;
   color: var(--foreground);
   font-family: var(--font-body);
@@ -138,9 +138,9 @@ select option {
 
 .hero-field {
   background:
-    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(33, 76, 255, 0.18), transparent 58%),
-    radial-gradient(ellipse 40% 35% at 85% 25%, rgba(124, 60, 255, 0.1), transparent 50%),
-    radial-gradient(ellipse 35% 30% at 15% 40%, rgba(33, 76, 255, 0.06), transparent 45%),
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(33, 76, 255, 0.13), transparent 58%),
+    radial-gradient(ellipse 40% 35% at 85% 25%, rgba(124, 60, 255, 0.07), transparent 50%),
+    radial-gradient(ellipse 35% 30% at 15% 40%, rgba(33, 76, 255, 0.045), transparent 45%),
     linear-gradient(180deg, #050506 0%, #030303 100%);
 }
 
@@ -156,16 +156,16 @@ select option {
 
 .feed-gradient {
   background:
-    linear-gradient(145deg, rgba(33, 76, 255, 0.12), transparent 42%),
-    linear-gradient(200deg, rgba(124, 60, 255, 0.08), transparent 50%),
+    linear-gradient(145deg, rgba(33, 76, 255, 0.09), transparent 42%),
+    linear-gradient(200deg, rgba(124, 60, 255, 0.06), transparent 50%),
     linear-gradient(160deg, #141418, #08080a);
 }
 
 .clean-feed {
   background:
     linear-gradient(125deg, rgba(255, 255, 255, 0.04), transparent 36%),
-    radial-gradient(circle at 72% 32%, rgba(61, 107, 255, 0.16), transparent 18rem),
-    radial-gradient(circle at 20% 70%, rgba(124, 60, 255, 0.08), transparent 14rem),
+    radial-gradient(circle at 72% 32%, rgba(61, 107, 255, 0.12), transparent 18rem),
+    radial-gradient(circle at 20% 70%, rgba(124, 60, 255, 0.06), transparent 14rem),
     linear-gradient(160deg, #16161a, #08080a);
 }
 
@@ -186,7 +186,7 @@ select option {
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 28%, transparent 72%, rgba(124, 60, 255, 0.04));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 28%, transparent 72%, rgba(124, 60, 255, 0.03));
   opacity: 0.7;
 }
 

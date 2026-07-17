@@ -45,36 +45,36 @@ export function Header() {
         Skip to content
       </a>
       <div
-        className={`mx-auto max-w-[88rem] rounded-full border transition-all duration-300 ${
+        className={`mx-auto max-w-[88rem] rounded-full border transition-all duration-300 lg:w-fit ${
           scrolled || open || activeMenu
-            ? "border-white/[0.09] bg-[#0a0a0c]/90 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur-2xl"
-            : "border-white/[0.06] bg-[#0a0a0c]/70 shadow-[0_16px_50px_-24px_rgba(0,0,0,0.55)] backdrop-blur-xl"
+            ? "border-white/[0.08] bg-[#0b0b0e] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)]"
+            : "border-white/[0.06] bg-[#0b0b0e]/95 shadow-[0_16px_50px_-24px_rgba(0,0,0,0.6)] backdrop-blur-xl"
         }`}
       >
-        <div className="relative flex h-16 items-center justify-between gap-4 px-4 sm:h-[4.25rem] sm:px-6 lg:pl-7 lg:pr-3">
-          <Link href="/" className="relative z-10 flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan">
-            <Image
-              src={brandAssets.mark}
-              alt=""
-              width={40}
-              height={40}
-              className="h-9 w-9 object-contain sm:h-10 sm:w-10"
-              priority
-            />
+        <div className="relative flex h-16 items-center justify-between gap-4 px-3 sm:h-[4.5rem] lg:justify-start lg:gap-6 lg:pr-2.5">
+          {/* Logo badge — white circle with the mark, small wordmark beside */}
+          <Link href="/" className="relative z-10 flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white sm:h-12 sm:w-12">
+              <Image
+                src={brandAssets.mark}
+                alt=""
+                width={44}
+                height={44}
+                className="h-7 w-7 object-contain sm:h-8 sm:w-8"
+                priority
+              />
+            </span>
             <Image
               src={brandAssets.wordmark}
               alt="Visrax"
               width={140}
-              height={28}
-              className="h-5 w-auto object-contain sm:h-6"
+              height={16}
+              className="h-3.5 w-auto object-contain sm:h-4 lg:hidden xl:block"
               priority
             />
           </Link>
 
-          <nav
-            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-0.5 lg:flex"
-            aria-label="Primary navigation"
-          >
+          <nav className="hidden items-center gap-1 px-2 lg:flex" aria-label="Primary navigation">
             {navGroups.map((group) => (
               <div
                 key={group.label}
@@ -84,8 +84,8 @@ export function Header() {
               >
                 <Link
                   href={group.href}
-                  className={`flex min-h-10 items-center gap-1.5 rounded-lg px-3.5 text-[0.8125rem] font-medium tracking-wide transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan ${
-                    activeMenu === group.label ? "bg-white/[0.06] text-white" : "text-white/55 hover:bg-white/[0.04] hover:text-white"
+                  className={`flex min-h-10 items-center gap-1.5 rounded-full px-4 text-sm font-medium tracking-wide transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan ${
+                    activeMenu === group.label ? "bg-white/[0.08] text-white" : "text-white/75 hover:text-white"
                   }`}
                   onFocus={() => openMenu(group.label)}
                   aria-expanded={activeMenu === group.label}
@@ -104,20 +104,24 @@ export function Header() {
                     onMouseEnter={() => openMenu(group.label)}
                     onMouseLeave={scheduleClose}
                   >
-                    <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0c]/96 p-2 shadow-panel backdrop-blur-xl">
-                      <Link
-                        href={group.href}
-                        className="mb-1 flex items-center justify-between rounded-xl px-3.5 py-3 text-sm font-medium text-accent transition hover:bg-white/[0.04]"
-                      >
-                        {group.label} overview
-                        <span aria-hidden className="text-white/30">→</span>
-                      </Link>
+                    <div className="relative overflow-hidden rounded-2xl border border-white/[0.05] bg-gradient-to-b from-[#131318] to-[#0b0b0f] p-2 shadow-[0_40px_90px_-24px_rgba(0,0,0,0.95)]">
+                      {/* Soft top sheen instead of a hard ring */}
+                      <span aria-hidden className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+                      <div className="mb-1 border-b border-white/[0.06] pb-1">
+                        <Link
+                          href={group.href}
+                          className="flex items-center justify-between rounded-xl px-3.5 py-3 text-sm font-medium text-accent transition hover:bg-white/[0.05]"
+                        >
+                          {group.label} overview
+                          <span aria-hidden className="text-white/30">→</span>
+                        </Link>
+                      </div>
                       <div className="grid max-h-[min(24rem,60vh)] gap-0.5 overflow-y-auto">
                         {group.items.map((item) => (
                           <Link
                             key={item.href}
                             href={item.href}
-                            className="rounded-xl px-3.5 py-2.5 text-sm text-white/60 transition hover:bg-white/[0.04] hover:text-white"
+                            className="rounded-xl px-3.5 py-2.5 text-sm text-white/75 transition hover:bg-white/[0.07] hover:text-white"
                           >
                             {item.label}
                           </Link>
@@ -133,7 +137,7 @@ export function Header() {
           <div className="hidden items-center lg:flex">
             <Link
               href="/request-demo"
-              className="group inline-flex min-h-11 items-center gap-1.5 rounded-full bg-gradient-to-r from-[#214cff] to-[#4d6bff] px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-[0_10px_30px_-8px_rgba(33,76,255,0.5)] transition duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+              className="group inline-flex min-h-12 items-center gap-1.5 rounded-full bg-white px-7 py-3 text-sm font-semibold tracking-wide text-[#0b0b12] transition duration-200 hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
             >
               Request a Demo
               <ArrowUpRight aria-hidden className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -152,7 +156,7 @@ export function Header() {
       </div>
 
       {open ? (
-        <div className="mx-auto mt-2 max-h-[calc(100dvh-6rem)] max-w-6xl overflow-y-auto rounded-3xl border border-white/10 bg-[#050506]/95 px-4 pb-8 pt-3 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur-2xl lg:hidden">
+        <div className="mx-auto mt-2 max-h-[calc(100dvh-6rem)] max-w-6xl overflow-y-auto rounded-3xl border border-white/10 bg-[#0b0b0e] px-4 pb-8 pt-3 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)] lg:hidden">
           <nav aria-label="Mobile navigation" className="mx-auto max-w-lg">
             {navGroups.map((group) => (
               <details key={group.label} className="border-b border-white/[0.08] py-1" open={group.label === "Platform"}>

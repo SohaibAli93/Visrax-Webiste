@@ -4,14 +4,10 @@ import {
   DeploymentSection,
   FinalCta,
   HowItWorksSection,
-  IncidentSection,
   IndustriesSection,
-  IntegrationSection,
-  MultiLocationSection,
   PlatformSection,
   SecuritySection,
-  TrustBar,
-  UseCasesSection
+  TrustBar
 } from "@/components/sections/HomeSections";
 import { ScrollHero } from "@/components/sections/ScrollHero";
 import { IntroStatement } from "@/components/sections/IntroStatement";
@@ -50,10 +46,6 @@ export default function HomePage() {
       <PlatformSection />
       <CapabilitiesSection />
       <IndustriesSection />
-      <UseCasesSection />
-      <MultiLocationSection />
-      <IntegrationSection />
-      <IncidentSection />
       <DeploymentSection />
       <SecuritySection />
       <FinalCta />

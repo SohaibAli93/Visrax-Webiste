@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   alternates: { canonical: absoluteUrl("/") },
   icons: {
     icon: "/brand/icon.png",
-    apple: "/brand/app logo.png"
+    apple: "/brand/icon.png"
   }
 };
 

@@ -53,7 +53,7 @@ export function IntroStatement() {
   return (
     <section ref={ref} className="relative overflow-hidden bg-[#030303] py-24 lg:py-32">
       {/* Subtle brand glow from the left, matching the hero */}
-      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_50%_60%_at_10%_30%,rgba(33,76,255,0.10),transparent_60%)]" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_50%_60%_at_10%_30%,rgba(33,76,255,0.07),transparent_60%)]" aria-hidden />
 
       {/* Faint vertical grid lines */}
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>

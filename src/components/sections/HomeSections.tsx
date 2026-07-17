@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle2, Cpu, Eye, Lock, Radar } from "lucide-react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { DetectionCollage } from "@/components/sections/DetectionCollage";
+import { HowItWorksStack } from "@/components/sections/HowItWorksStack";
 import { HeroSlider } from "@/components/sections/HeroSlider";
 import { IndustriesCarousel } from "@/components/sections/IndustriesCarousel";
 import { IncidentTimeline } from "@/components/visuals/IncidentTimeline";
@@ -71,24 +73,6 @@ export function BrandStatement() {
 }
 
 export function HowItWorksSection() {
-  const steps = [
-    {
-      title: "Start with the cameras you already have.",
-      copy: "We connect to the views your team already uses — entrances, floors, warehouses, parking areas, and restricted spaces.",
-      labels: ["Head Office", "Warehouse 02", "Parking Entrance"]
-    },
-    {
-      title: "Tell Visrax what to watch for.",
-      copy: "Choose the situations that matter to your business: someone in a restricted area, a vehicle at the gate, a queue building up, or missing safety gear.",
-      labels: ["Restricted entry", "Safety gear check", "Queue buildup"]
-    },
-    {
-      title: "Get alerts your team can act on.",
-      copy: "When something important happens, Visrax sends a clear alert with the details and evidence — so the right people can respond quickly.",
-      labels: ["Alert sent", "Evidence saved", "Issue closed"]
-    }
-  ];
-
   return (
     <section className="py-16 lg:py-20">
       <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
@@ -97,35 +81,8 @@ export function HowItWorksSection() {
           title="Simple to set up. Easy for any team to use."
           copy="You do not need a technical background. Visrax is built for operations, safety, and facility teams who need clear answers — not more screens to watch."
         />
-        <div className="mt-16 grid gap-4">
-          {steps.map((step, index) => (
-            <Reveal key={step.title} delay={index * 0.04}>
-              <div className="premium-surface grid gap-8 p-6 md:grid-cols-[0.9fr_1fr] md:p-9">
-                <div className="relative z-10">
-                  <span className="font-mono text-[0.7rem] font-medium tracking-[0.2em] text-accent">0{index + 1}</span>
-                  <h3 className="mt-5 font-display text-balance text-3xl font-semibold leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-5 max-w-xl text-base leading-7 text-white/50">{step.copy}</p>
-                </div>
-                <div className="relative z-10 grid content-center gap-2.5">
-                  {step.labels.map((label, itemIndex) => (
-                    <div
-                      key={label}
-                      className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.025] px-5 py-4"
-                    >
-                      <span className="text-sm text-white/65">{label}</span>
-                      <span className="rounded-md bg-white/[0.05] px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white/40">
-                        {itemIndex === 0 ? "Priority" : "Set up"}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
       </div>
+      <HowItWorksStack />
     </section>
   );
 }
@@ -150,37 +107,7 @@ export function PlatformSection() {
 export function CapabilitiesSection() {
   return (
     <section id="capabilities" className="soft-divider border-y section-alt py-16 lg:py-20">
-      <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          eyebrow="What Visrax can detect"
-          title="Object detection and monitoring built around your workplace."
-          copy="Choose the checks that match how your site runs — from people and vehicles to safety zones and busy areas."
-        />
-        <div className="mt-14 grid gap-3 lg:grid-cols-2">
-          {capabilityPages.slice(0, 10).map((item, index) => (
-            <Reveal key={item.slug} delay={index * 0.03}>
-              <Link
-                href={`/capabilities/${item.slug}`}
-                className="group surface-card grid min-h-52 p-7 transition duration-200 hover:-translate-y-0.5"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-[#214cff]/15 to-[#7c3cff]/10">
-                    <item.icon aria-hidden className="h-5 w-5 text-accent" />
-                  </div>
-                  <ArrowRight
-                    aria-hidden
-                    className="h-5 w-5 text-white/20 transition group-hover:translate-x-1 group-hover:text-white"
-                  />
-                </div>
-                <div className="mt-10">
-                  <h3 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-white/50">{item.description}</p>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </div>
+      <DetectionCollage />
     </section>
   );
 }
@@ -223,7 +150,7 @@ export function IndustriesSection() {
 export function UseCasesSection() {
   return (
     <section className="soft-divider relative overflow-hidden border-y bg-[#030303] py-16 lg:py-20">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_30%,rgba(33,76,255,0.12),transparent_32rem)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_30%,rgba(33,76,255,0.09),transparent_32rem)]" />
       <div className="relative mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <SectionHeader
