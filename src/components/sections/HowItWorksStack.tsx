@@ -11,6 +11,7 @@ import {
   type MotionValue
 } from "framer-motion";
 import { useRef } from "react";
+import { useMediaQuery } from "@/lib/useMediaQuery";
 
 /* Full-screen cards in the site theme: dark elevated surface with a per-card
    brand tint, inset rounded image left, big headline right, pill rows with
@@ -54,13 +55,16 @@ const WINDOWS: [number, number][] = [
 
 export function HowItWorksStack() {
   const reduced = useReducedMotion();
+  const desktop = useMediaQuery("(min-width: 1024px)");
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const p = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.5, restDelta: 0.0005 });
 
-  if (reduced) {
+  // The full-screen conveyor only fits a wide viewport — a step card's content
+  // is taller than 100vh on phones — so below lg we stack the cards instead.
+  if (reduced || !desktop) {
     return (
-      <div className="mt-10 grid gap-6">
+      <div className="mx-auto mt-10 grid max-w-[88rem] gap-6 px-4 sm:px-6">
         {STEPS.map((step) => (
           <StepCard key={step.n} step={step} />
         ))}

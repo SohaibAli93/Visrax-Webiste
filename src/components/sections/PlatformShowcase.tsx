@@ -85,9 +85,9 @@ export function PlatformShowcase() {
       </div>
 
       <div className="mt-2.5 grid overflow-hidden rounded-xl border border-white/10 bg-black lg:grid-cols-[1fr_340px]">
-        <div className="relative min-h-[480px] overflow-hidden bg-[#070708] sm:min-h-[520px]">
+        <div className="relative min-h-[420px] overflow-hidden bg-[#070708] sm:min-h-[520px]">
           <div className="absolute inset-0 technical-grid opacity-20" />
-          <div className="absolute inset-5 grid grid-cols-2 gap-3 sm:inset-6 sm:gap-4">
+          <div className="absolute inset-4 grid grid-cols-2 gap-2.5 sm:inset-6 sm:gap-4">
             {[0, 1, 2, 3].map((item) => (
               <div key={item} className="relative overflow-hidden rounded-xl border border-white/10 bg-[#111113]">
                 <div className="absolute inset-0 feed-gradient opacity-80" />

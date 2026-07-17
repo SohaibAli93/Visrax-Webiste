@@ -78,14 +78,17 @@ export function IndustriesCarousel({ items }: { items: CarouselItem[] }) {
 
   return (
     <div
-      className="relative"
+      // overflow-x-clip: the fanned side cards extend far past the viewport;
+      // without clipping they expand the mobile layout viewport and the whole
+      // page renders zoomed-out.
+      className="relative overflow-x-clip"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
       {/* Stage */}
       <div
         ref={stageRef}
-        className="relative flex h-[440px] items-center justify-center sm:h-[560px] lg:h-[680px]"
+        className="relative flex h-[300px] items-center justify-center sm:h-[560px] lg:h-[680px]"
       >
         {items.map((item, i) => {
           // shortest signed distance around the ring
@@ -146,18 +149,18 @@ export function IndustriesCarousel({ items }: { items: CarouselItem[] }) {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.4 }}
-                      className="absolute inset-x-7 bottom-7 flex items-end justify-between gap-4"
+                      className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-4 sm:inset-x-7 sm:bottom-7"
                     >
                       <div>
                         <p className="font-mono text-[0.65rem] uppercase tracking-[0.28em] text-accent">
                           {item.eyebrow}
                         </p>
-                        <p className="mt-2 font-display text-2xl font-semibold text-white sm:text-3xl lg:text-4xl">
+                        <p className="mt-2 font-display text-lg font-semibold text-white sm:text-3xl lg:text-4xl">
                           {item.title}
                         </p>
                       </div>
-                      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#214cff] text-white shadow-lg shadow-[#214cff]/30 transition group-hover:scale-105">
-                        <ArrowUpRight aria-hidden className="h-6 w-6" />
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#214cff] text-white shadow-lg shadow-[#214cff]/30 transition group-hover:scale-105 sm:h-14 sm:w-14">
+                        <ArrowUpRight aria-hidden className="h-5 w-5 sm:h-6 sm:w-6" />
                       </span>
                     </motion.div>
                   ) : null}

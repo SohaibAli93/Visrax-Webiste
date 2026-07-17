@@ -139,7 +139,7 @@ export function ScrollHero() {
 
         {/* Tagline — fills the dark left half of the photo band. Sits higher on
             mobile where the CTA pills stack into two rows. */}
-        <div className="absolute bottom-44 left-5 z-30 max-w-md sm:bottom-28 sm:left-8">
+        <div className="absolute bottom-44 left-5 right-5 z-30 max-w-md sm:bottom-28 sm:left-8 sm:right-auto">
           <p className="eyebrow mb-4">Object Detection · Monitoring</p>
           <p className="font-display text-2xl font-semibold leading-snug tracking-tight text-white sm:text-3xl">
             Real-time awareness from the cameras you already have.
@@ -147,7 +147,7 @@ export function ScrollHero() {
         </div>
 
         {/* Floating CTA pills — pinned to the sticky viewport bottom */}
-        <div className="absolute bottom-6 left-5 z-30 flex flex-wrap items-center gap-3 sm:left-8">
+        <div className="absolute bottom-6 left-5 right-5 z-30 flex flex-wrap items-center gap-3 sm:left-8 sm:right-auto">
           <Link
             href="/request-demo"
             className="group inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-black/70 px-6 py-4 text-sm font-semibold text-white backdrop-blur-md transition hover:border-white/35 hover:bg-black/85"

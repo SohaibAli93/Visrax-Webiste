@@ -10,6 +10,7 @@ import {
   type MotionValue
 } from "framer-motion";
 import { useRef, useState } from "react";
+import { useMediaQuery } from "@/lib/useMediaQuery";
 
 const SCENE_IMAGE = "/images/monitoring-warehouse-premium-section-2x.webp";
 
@@ -55,40 +56,55 @@ const SPECS = [
 // The image finishes full-bleed while still pinned; the light section is
 // pulled up over the track's final 100vh so it slides scroll-by-scroll OVER
 // the stuck image, curtain-style.
+//
+// The pinned scenes are laid out for a wide viewport — inside a phone's 100vh
+// frame the card grid clips — so below lg (and for reduced motion) we render
+// the static stacked version instead.
 export function ScrollNarrative() {
   const reduced = useReducedMotion();
+  const desktop = useMediaQuery("(min-width: 1024px)");
+
+  if (reduced || !desktop) {
+    return (
+      <>
+        <StaticNarrative />
+        <FieldPerformance />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <PinnedNarrative />
+      {/* Pulled up over the track's final 100vh so it slides over the stuck image */}
+      <FieldPerformance overlap />
+    </>
+  );
+}
+
+function PinnedNarrative() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const p = useSpring(scrollYProgress, { stiffness: 110, damping: 30, mass: 0.5, restDelta: 0.0005 });
 
   return (
-    <>
-      <section ref={ref} className="relative h-[500vh] bg-[#030303]">
-        <div className="sticky top-0 h-screen overflow-hidden">
-          {/* Brand ambient — very soft so the stage stays near-black */}
-          <div
-            className="pointer-events-none absolute inset-0 z-0"
-            style={{
-              background:
-                "radial-gradient(ellipse 55% 40% at 72% 18%, rgba(33,76,255,0.03), transparent 62%), radial-gradient(ellipse 40% 35% at 12% 82%, rgba(124,60,255,0.02), transparent 55%)"
-            }}
-            aria-hidden
-          />
-
-          {!reduced ? (
-            <>
-              <Wordmark p={p} />
-              <SceneGrid p={p} />
-              <SceneImage p={p} />
-              <SceneIntro p={p} />
-            </>
-          ) : (
-            <ReducedFallback />
-          )}
-        </div>
-      </section>
-      <FieldPerformance />
-    </>
+    <section ref={ref} className="relative h-[500vh] bg-[#030303]">
+      <div className="sticky top-0 h-screen overflow-hidden">
+        {/* Brand ambient — very soft so the stage stays near-black */}
+        <div
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 55% 40% at 72% 18%, rgba(33,76,255,0.03), transparent 62%), radial-gradient(ellipse 40% 35% at 12% 82%, rgba(124,60,255,0.02), transparent 55%)"
+          }}
+          aria-hidden
+        />
+        <Wordmark p={p} />
+        <SceneGrid p={p} />
+        <SceneImage p={p} />
+        <SceneIntro p={p} />
+      </div>
+    </section>
   );
 }
 
@@ -211,13 +227,14 @@ function SceneImage({ p }: { p: MotionValue<number> }) {
 }
 
 /* Light section — big black title, mono note, then the bordered panel with the
-   dark active accordion card and the blueprint layer diagram. */
-function FieldPerformance() {
+   dark active accordion card and the blueprint layer diagram. `overlap` pulls
+   it up over the pinned track's final 100vh (desktop only). */
+function FieldPerformance({ overlap = false }: { overlap?: boolean }) {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="relative z-[60] -mt-[100vh] bg-[#030303] text-white">
-      <div className="mx-auto max-w-[104rem] px-6 py-20 sm:px-10 lg:py-28">
+    <section className={`relative z-[60] bg-[#030303] text-white ${overlap ? "-mt-[100vh]" : ""}`}>
+      <div className="mx-auto max-w-[104rem] px-5 py-16 sm:px-10 sm:py-20 lg:py-28">
         {/* Title row */}
         <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr] lg:items-start">
           <h2 className="font-display font-bold leading-[0.95] tracking-[-0.03em] [font-size:clamp(2.75rem,7.5vw,6.5rem)]">
@@ -242,7 +259,7 @@ function FieldPerformance() {
                   className={`block w-full text-left transition-colors duration-300 ${isActive ? "bg-[#214cff] text-white" : "hover:bg-white/[0.04]"}`}
                 >
                   {isActive ? (
-                    <div className="p-7 sm:p-9">
+                    <div className="p-5 sm:p-9">
                       <div className="flex items-center gap-4">
                         <span className="flex h-5 w-5 shrink-0 items-center justify-center border-2 border-white" aria-hidden>
                           <span className="h-2 w-2 bg-white" />
@@ -253,9 +270,9 @@ function FieldPerformance() {
                       <p className="mt-6 max-w-sm text-[0.95rem] leading-7 text-white/90">{s.copy}</p>
                     </div>
                   ) : (
-                    <div className="flex items-center gap-10 px-7 py-9 sm:px-9">
+                    <div className="flex items-center gap-5 px-5 py-6 sm:gap-10 sm:px-9 sm:py-9">
                       <span className="font-mono text-sm text-white/40">{s.n}.</span>
-                      <span className="font-display text-2xl font-semibold tracking-tight text-white/80 sm:text-3xl">{s.title}</span>
+                      <span className="font-display text-xl font-semibold tracking-tight text-white/80 sm:text-3xl">{s.title}</span>
                     </div>
                   )}
                 </button>
@@ -263,16 +280,19 @@ function FieldPerformance() {
             })}
           </div>
 
-          {/* Blueprint diagram */}
+          {/* Blueprint diagram — scrolls sideways on phones so the mono labels
+              stay legible instead of shrinking with the viewport */}
           <div
-            className="relative min-h-[24rem] p-4 sm:p-8"
+            className="relative min-h-[24rem] overflow-x-auto p-4 sm:p-8"
             style={{
               backgroundImage:
                 "linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px)",
               backgroundSize: "28px 28px"
             }}
           >
-            <StackDiagram active={active} />
+            <div className="min-w-[34rem]">
+              <StackDiagram active={active} />
+            </div>
           </div>
         </div>
       </div>
@@ -407,19 +427,45 @@ function StackDiagram({ active }: { active: number }) {
   );
 }
 
-/* Static, non-animated version for reduced-motion users. */
-function ReducedFallback() {
+/* Static stacked version — used on small screens and for reduced-motion users.
+   Same content as the pinned scenes: intro copy, headline, feature cards, and
+   the warehouse image. */
+function StaticNarrative() {
   return (
-    <div className="mx-auto flex h-full max-w-[104rem] flex-col justify-center gap-10 px-6 py-24 sm:px-10">
-      <h2 className="font-display text-5xl font-bold tracking-tight text-white sm:text-6xl">Engineered to see.</h2>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {FEATURES.map((f) => (
-          <div key={f.title} className="flex min-h-[11rem] flex-col justify-between border border-white/35 bg-[#05050a] p-6">
-            <p className="text-sm leading-6 text-white/85">{f.copy}</p>
-            <p className="mt-6 font-display text-xl font-semibold text-white">{f.title}</p>
-          </div>
-        ))}
+    <section className="relative bg-[#030303]">
+      <div className="mx-auto flex max-w-[104rem] flex-col gap-12 px-5 py-16 sm:px-10 sm:py-24">
+        <div>
+          <p className="eyebrow mb-5">Visrax Vision Engine</p>
+          <p className="font-mono text-xs uppercase leading-relaxed tracking-[0.24em] text-white/60 sm:text-sm">
+            The science of surveillance,
+            <br />
+            the art of response.
+          </p>
+        </div>
+
+        <div>
+          <h2 className="font-display font-bold leading-[1.02] tracking-[-0.03em] text-white [font-size:clamp(2.25rem,7vw,4.5rem)]">
+            Engineered <span className="text-gradient">To See</span>
+          </h2>
+          <p className="mt-5 max-w-md text-base leading-7 text-white/50">
+            Advanced detection models built to turn the cameras you already have into a real-time monitoring system — the moment something matters.
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {FEATURES.map((f) => (
+            <div key={f.title} className="flex min-h-[11rem] flex-col justify-between gap-6 border border-white/35 bg-[#05050a] p-6">
+              <p className="text-[0.95rem] leading-7 text-white/85">{f.copy}</p>
+              <p className="font-display text-xl font-semibold tracking-tight text-white">{f.title}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+
+      <div className="relative aspect-[4/3] w-full sm:aspect-[16/9]">
+        <Image src={SCENE_IMAGE} alt="Visrax monitoring an active warehouse" fill sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#030303_0%,transparent_18%,transparent_84%,#030303_100%)]" aria-hidden />
+      </div>
+    </section>
   );
 }

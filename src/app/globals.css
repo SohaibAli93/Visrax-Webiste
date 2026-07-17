@@ -35,11 +35,17 @@
 html {
   scroll-behavior: smooth;
   background: var(--background);
+  /* Hard guard: never let stray wide content expand the mobile layout
+     viewport (which renders the whole site zoomed-out). `clip` avoids
+     creating a scroll container; `hidden` is the older-browser fallback. */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-x: clip;
   background:
     radial-gradient(ellipse 80% 50% at 50% -20%, rgba(33, 76, 255, 0.10), transparent 55%),
     radial-gradient(ellipse 50% 40% at 90% 10%, rgba(124, 60, 255, 0.06), transparent 45%),
