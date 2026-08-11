@@ -1,6 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, Cpu, Eye, Lock, Radar } from "lucide-react";
+import { CheckCircle2, Cpu, Eye, Lock, Radar } from "lucide-react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { DetectionCollage } from "@/components/sections/DetectionCollage";
 import { HowItWorksStack } from "@/components/sections/HowItWorksStack";
@@ -12,7 +11,7 @@ import { PlatformShowcase } from "@/components/sections/PlatformShowcase";
 import { Reveal } from "@/components/motion/Reveal";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { brandAssets, siteConfig } from "@/lib/site";
-import { capabilityPages, deploymentSteps, industryPages, securityItems } from "@/lib/data";
+import { deploymentSteps, industryPages, securityItems } from "@/lib/data";
 
 export function Hero() {
   return <HeroSlider />;

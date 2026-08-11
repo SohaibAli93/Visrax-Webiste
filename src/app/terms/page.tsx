@@ -7,6 +7,8 @@ export const metadata = createMetadata({
   path: "/terms"
 });
 
+export const robots = { index: false, follow: true };
+
 export default function TermsPage() {
   const items = [
     "Website content is provided for product information and evaluation conversations.",

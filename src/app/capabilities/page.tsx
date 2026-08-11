@@ -17,6 +17,10 @@ export default function CapabilitiesPage() {
       description="Choose what to watch for — people, vehicles, safety zones, queues, after-hours activity, and more — using the cameras you already have."
       pages={capabilityPages}
       basePath="/capabilities"
+      body={[
+        "Every capability below runs on the cameras you already have, so you can add intelligent monitoring without replacing hardware or changing how your team views live feeds.",
+        "Set up each capability around the situations that matter at your site — after-hours movement, restricted zones, vehicle activity, queues, or occupancy. Visrax turns detection into clear alerts and evidence your team can act on."
+      ]}
     />
   );
 }

@@ -8,6 +8,8 @@ export const metadata = createMetadata({
   path: "/privacy"
 });
 
+export const robots = { index: false, follow: true };
+
 export default function PrivacyPage() {
   return (
     <LegalPage

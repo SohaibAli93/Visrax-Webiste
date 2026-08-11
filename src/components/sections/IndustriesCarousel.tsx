@@ -73,9 +73,6 @@ export function IndustriesCarousel({ items }: { items: CarouselItem[] }) {
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
-
-  const active = items[index];
-
   return (
     <div
       // overflow-x-clip: the fanned side cards extend far past the viewport;

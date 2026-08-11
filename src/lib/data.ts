@@ -35,6 +35,11 @@ export type DetailPage = {
   icon: LucideIcon;
   points: string[];
   useCases: string[];
+  publishedAt?: string;
+  updatedAt?: string;
+  relatedCapabilities?: string[];
+  relatedSolutions?: string[];
+  relatedPlatform?: string[];
 };
 export type Article = {
   slug: string;
@@ -43,6 +48,7 @@ export type Article = {
   category: string;
   date: string;
   readTime: string;
+  author: string;
   body: string[];
 };
 
@@ -55,7 +61,8 @@ export const navGroups: NavGroup[] = [
       { label: "Detection and Tracking", href: "/platform/detection-tracking" },
       { label: "Alerts and Incidents", href: "/platform/alerts-incidents" },
       { label: "Analytics", href: "/platform/analytics" },
-      { label: "Multi-Site Monitoring", href: "/platform/multi-site-monitoring" }
+      { label: "Multi-Site Monitoring", href: "/platform/multi-site-monitoring" },
+      { label: "Camera Compatibility", href: "/camera-compatibility" }
     ]
   },
   {
@@ -114,6 +121,7 @@ export const navGroups: NavGroup[] = [
 export const platformPages: DetailPage[] = [
   {
     slug: "live-monitoring",
+    publishedAt: "2026-07-13",
     title: "Live Monitoring",
     eyebrow: "Platform",
     description:
@@ -126,6 +134,7 @@ export const platformPages: DetailPage[] = [
   },
   {
     slug: "detection-tracking",
+    publishedAt: "2026-07-13",
     title: "Detection and Tracking",
     eyebrow: "Platform",
     description:
@@ -138,6 +147,7 @@ export const platformPages: DetailPage[] = [
   },
   {
     slug: "alerts-incidents",
+    publishedAt: "2026-07-13",
     title: "Alerts and Incidents",
     eyebrow: "Platform",
     description:
@@ -150,6 +160,7 @@ export const platformPages: DetailPage[] = [
   },
   {
     slug: "analytics",
+    publishedAt: "2026-07-13",
     title: "Analytics",
     eyebrow: "Platform",
     description:
@@ -162,6 +173,7 @@ export const platformPages: DetailPage[] = [
   },
   {
     slug: "multi-site-monitoring",
+    publishedAt: "2026-07-13",
     title: "Multi-Site Monitoring",
     eyebrow: "Platform",
     description:
@@ -177,6 +189,7 @@ export const platformPages: DetailPage[] = [
 export const capabilityPages: DetailPage[] = [
   {
     slug: "object-detection",
+    publishedAt: "2026-07-13",
     title: "Object Detection",
     eyebrow: "Capability",
     description: "See people, vehicles, equipment, and safety gear in real time — in the areas you choose to monitor.",
@@ -187,6 +200,7 @@ export const capabilityPages: DetailPage[] = [
   },
   {
     slug: "movement-tracking",
+    publishedAt: "2026-07-13",
     title: "Movement Tracking",
     eyebrow: "Capability",
     description: "Follow how people, vehicles, and equipment move through your site — from entrance to exit.",
@@ -197,6 +211,7 @@ export const capabilityPages: DetailPage[] = [
   },
   {
     slug: "zone-monitoring",
+    publishedAt: "2026-07-13",
     title: "Zone Monitoring",
     eyebrow: "Capability",
     description: "Define restricted, hazardous, sensitive, or operational zones and monitor activity inside them.",
@@ -207,6 +222,7 @@ export const capabilityPages: DetailPage[] = [
   },
   {
     slug: "safety-monitoring",
+    publishedAt: "2026-07-13",
     title: "Safety Monitoring",
     eyebrow: "Capability",
     description: "Monitor PPE, restricted zones, possible fire and smoke events, and worker-equipment proximity.",
@@ -217,6 +233,7 @@ export const capabilityPages: DetailPage[] = [
   },
   {
     slug: "security-monitoring",
+    publishedAt: "2026-07-13",
     title: "Security Monitoring",
     eyebrow: "Capability",
     description: "Identify intrusion, after-hours activity, unauthorized access, perimeter events, and abandoned objects.",
@@ -227,6 +244,7 @@ export const capabilityPages: DetailPage[] = [
   },
   {
     slug: "occupancy-analytics",
+    publishedAt: "2026-07-13",
     title: "Occupancy Analytics",
     eyebrow: "Capability",
     description: "Understand occupancy, queues, dwell time, crowd activity, movement patterns, and space utilization.",
@@ -237,6 +255,7 @@ export const capabilityPages: DetailPage[] = [
   },
   {
     slug: "vehicle-intelligence",
+    publishedAt: "2026-07-13",
     title: "Vehicle Intelligence",
     eyebrow: "Capability",
     description: "Monitor entrances, exits, parking, traffic flow, loading areas, and vehicle activity around facilities.",
@@ -250,6 +269,7 @@ export const capabilityPages: DetailPage[] = [
 export const industryPages: DetailPage[] = [
   {
     slug: "manufacturing",
+    publishedAt: "2026-07-13",
     title: "Manufacturing and Factories",
     eyebrow: "Industry",
     description: "Monitor production areas, safety events, equipment movement, restricted zones, and operational activity.",
@@ -260,6 +280,7 @@ export const industryPages: DetailPage[] = [
   },
   {
     slug: "offices-commercial-buildings",
+    publishedAt: "2026-07-13",
     title: "Offices and Commercial Buildings",
     eyebrow: "Industry",
     description: "Understand occupancy, visitor flow, restricted spaces, after-hours movement, entrances, and facility usage.",
@@ -270,6 +291,7 @@ export const industryPages: DetailPage[] = [
   },
   {
     slug: "warehousing-logistics",
+    publishedAt: "2026-07-13",
     title: "Warehousing and Logistics",
     eyebrow: "Industry",
     description: "Monitor forklifts, loading areas, worker movement, vehicles, restricted zones, and operational flow.",
@@ -280,6 +302,7 @@ export const industryPages: DetailPage[] = [
   },
   {
     slug: "textile-manufacturing",
+    publishedAt: "2026-07-13",
     title: "Textile Manufacturing",
     eyebrow: "Industry",
     description: "Monitor spinning, weaving, dyeing, finishing, packing, warehouses, utilities, entrances, and critical safety areas.",
@@ -290,6 +313,7 @@ export const industryPages: DetailPage[] = [
   },
   {
     slug: "retail",
+    publishedAt: "2026-07-13",
     title: "Retail and Shopping Centers",
     eyebrow: "Industry",
     description: "Understand queues, movement, occupancy, dwell time, restricted areas, and site operations.",
@@ -300,6 +324,7 @@ export const industryPages: DetailPage[] = [
   },
   {
     slug: "construction",
+    publishedAt: "2026-07-13",
     title: "Construction",
     eyebrow: "Industry",
     description: "Monitor site entrances, PPE visibility, hazardous zones, equipment activity, and after-hours movement.",
@@ -310,6 +335,7 @@ export const industryPages: DetailPage[] = [
   },
   {
     slug: "healthcare",
+    publishedAt: "2026-07-13",
     title: "Healthcare Facilities",
     eyebrow: "Industry",
     description: "Monitor entrances, sensitive areas, occupancy, queue behavior, and operational activity in healthcare environments.",
@@ -320,6 +346,7 @@ export const industryPages: DetailPage[] = [
   },
   {
     slug: "education",
+    publishedAt: "2026-07-13",
     title: "Educational Campuses",
     eyebrow: "Industry",
     description: "Improve visibility across entrances, common areas, parking, restricted spaces, and campus operations.",
@@ -330,6 +357,7 @@ export const industryPages: DetailPage[] = [
   },
   {
     slug: "traffic-transportation",
+    publishedAt: "2026-07-13",
     title: "Traffic and Transportation",
     eyebrow: "Industry",
     description: "Analyze vehicle movement, congestion, entrances, parking, lane activity, and traffic patterns.",
@@ -340,6 +368,7 @@ export const industryPages: DetailPage[] = [
   },
   {
     slug: "energy-utilities",
+    publishedAt: "2026-07-13",
     title: "Energy and Utilities",
     eyebrow: "Industry",
     description: "Monitor remote facilities, hazardous spaces, perimeter activity, equipment zones, and critical operations.",
@@ -350,6 +379,7 @@ export const industryPages: DetailPage[] = [
   },
   {
     slug: "security-critical-infrastructure",
+    publishedAt: "2026-07-13",
     title: "Security and Critical Infrastructure",
     eyebrow: "Industry",
     description: "Support security operations with perimeter monitoring, intrusion events, restricted areas, and evidence workflows.",
@@ -363,6 +393,7 @@ export const industryPages: DetailPage[] = [
 export const solutionPages: DetailPage[] = [
   {
     slug: "safety-compliance",
+    publishedAt: "2026-07-13",
     title: "Safety and Compliance",
     eyebrow: "Solution",
     description: "Monitor safety zones, PPE visibility, fire and smoke indicators, and worker-equipment proximity.",
@@ -373,6 +404,7 @@ export const solutionPages: DetailPage[] = [
   },
   {
     slug: "security-monitoring",
+    publishedAt: "2026-07-13",
     title: "Security Monitoring",
     eyebrow: "Solution",
     description: "Detect intrusion, after-hours activity, perimeter events, unauthorized access, and abandoned objects.",
@@ -383,6 +415,7 @@ export const solutionPages: DetailPage[] = [
   },
   {
     slug: "operational-visibility",
+    publishedAt: "2026-07-13",
     title: "Operational Visibility",
     eyebrow: "Solution",
     description: "Give teams a live understanding of facility activity, events, site health, and operational trends.",
@@ -393,6 +426,7 @@ export const solutionPages: DetailPage[] = [
   },
   {
     slug: "facility-intelligence",
+    publishedAt: "2026-07-13",
     title: "Facility Intelligence",
     eyebrow: "Solution",
     description: "Understand occupancy, space use, visitor movement, restricted areas, and camera availability.",
@@ -403,6 +437,7 @@ export const solutionPages: DetailPage[] = [
   },
   {
     slug: "traffic-parking",
+    publishedAt: "2026-07-13",
     title: "Traffic and Parking",
     eyebrow: "Solution",
     description: "Monitor vehicle movement, parking areas, entrance congestion, lane activity, and transport zones.",
@@ -444,6 +479,7 @@ export const insights: Article[] = [
     category: "Platform",
     date: "2026-07-13",
     readTime: "5 min read",
+    author: "Visrax",
     body: [
       "Most organizations already have cameras watching entrances, floors, yards, and shared spaces. The missing layer is not more screens. It is a system that translates visual activity into structured events teams can review and act on.",
       "Visrax is designed around that operational gap. Compatible camera feeds can be configured around zones, object classes, movement patterns, severity levels, and incident workflows.",
@@ -458,6 +494,7 @@ export const insights: Article[] = [
     category: "Operations",
     date: "2026-07-13",
     readTime: "4 min read",
+    author: "Visrax",
     body: [
       "A wall of live feeds does not scale across offices, factories, warehouses, branches, and transport areas. Multi-site monitoring needs a hierarchy that makes the organization understandable.",
       "Teams need to see which sites have active events, which cameras are unavailable, where occupancy is changing, and which incidents require ownership.",
@@ -472,6 +509,7 @@ export const insights: Article[] = [
     category: "Strategy",
     date: "2026-07-13",
     readTime: "6 min read",
+    author: "Visrax",
     body: [
       "Computer vision programs are strongest when safety, security, and operations share a common event model. A restricted-zone entry may involve a safety team, a security team, or a facility manager depending on context.",
       "The useful output is a reviewable incident with visual evidence, severity, assignment, status, and reporting. That makes events auditable without exposing internal technical details to every stakeholder.",
@@ -489,6 +527,7 @@ export const caseStudies: Article[] = [
     category: "Sample Framework",
     date: "2026-07-13",
     readTime: "3 min read",
+    author: "Visrax",
     body: [
       "A focused manufacturing pilot begins with a small number of high-value zones: entrances, production aisles, utility rooms, and forklift paths.",
       "Visrax can be configured to review restricted-zone entry, PPE visibility, worker-equipment proximity, and possible fire or smoke events.",
@@ -503,6 +542,7 @@ export const caseStudies: Article[] = [
     category: "Sample Framework",
     date: "2026-07-13",
     readTime: "3 min read",
+    author: "Visrax",
     body: [
       "Commercial buildings often need visibility into entrances, shared floors, restricted areas, and after-hours movement.",
       "A Visrax deployment can convert those spaces into configured zones with occupancy, visitor flow, active events, and camera availability.",
@@ -538,4 +578,157 @@ export function allDetailPages() {
     ...industryPages.map((page) => ({ ...page, base: "/industries" })),
     ...solutionPages.map((page) => ({ ...page, base: "/solutions" }))
   ];
+}
+
+type RelatedLink = { label: string; href: string };
+
+const relatedLinks: Record<string, RelatedLink[]> = {
+  // Platform
+  "live-monitoring": [
+    { label: "Object Detection", href: "/capabilities/object-detection" },
+    { label: "Multi-Site Monitoring", href: "/platform/multi-site-monitoring" },
+    { label: "Operational Visibility", href: "/solutions/operational-visibility" }
+  ],
+  "detection-tracking": [
+    { label: "Object Detection", href: "/capabilities/object-detection" },
+    { label: "Movement Tracking", href: "/capabilities/movement-tracking" },
+    { label: "Vehicle Intelligence", href: "/capabilities/vehicle-intelligence" }
+  ],
+  "alerts-incidents": [
+    { label: "Alerts and Incidents", href: "/platform/alerts-incidents" },
+    { label: "Safety Monitoring", href: "/capabilities/safety-monitoring" },
+    { label: "Security Monitoring", href: "/solutions/security-monitoring" }
+  ],
+  analytics: [
+    { label: "Occupancy Analytics", href: "/capabilities/occupancy-analytics" },
+    { label: "Operational Visibility", href: "/solutions/operational-visibility" },
+    { label: "Facility Intelligence", href: "/solutions/facility-intelligence" }
+  ],
+  "multi-site-monitoring": [
+    { label: "Live Monitoring", href: "/platform/live-monitoring" },
+    { label: "Operational Visibility", href: "/solutions/operational-visibility" },
+    { label: "Facility Intelligence", href: "/solutions/facility-intelligence" }
+  ],
+  // Capabilities
+  "object-detection": [
+    { label: "Movement Tracking", href: "/capabilities/movement-tracking" },
+    { label: "Zone Monitoring", href: "/capabilities/zone-monitoring" },
+    { label: "Detection and Tracking", href: "/platform/detection-tracking" }
+  ],
+  "movement-tracking": [
+    { label: "Object Detection", href: "/capabilities/object-detection" },
+    { label: "Vehicle Intelligence", href: "/capabilities/vehicle-intelligence" },
+    { label: "Operational Visibility", href: "/solutions/operational-visibility" }
+  ],
+  "zone-monitoring": [
+    { label: "Safety Monitoring", href: "/capabilities/safety-monitoring" },
+    { label: "Security Monitoring", href: "/capabilities/security-monitoring" },
+    { label: "Alerts and Incidents", href: "/platform/alerts-incidents" }
+  ],
+  "safety-monitoring": [
+    { label: "Zone Monitoring", href: "/capabilities/zone-monitoring" },
+    { label: "Safety and Compliance", href: "/solutions/safety-compliance" },
+    { label: "Alerts and Incidents", href: "/platform/alerts-incidents" }
+  ],
+  "security-monitoring": [
+    { label: "Zone Monitoring", href: "/capabilities/zone-monitoring" },
+    { label: "Security Monitoring", href: "/solutions/security-monitoring" },
+    { label: "Multi-Site Monitoring", href: "/platform/multi-site-monitoring" }
+  ],
+  "occupancy-analytics": [
+    { label: "Analytics", href: "/platform/analytics" },
+    { label: "Facility Intelligence", href: "/solutions/facility-intelligence" },
+    { label: "Retail and Shopping Centers", href: "/industries/retail" }
+  ],
+  "vehicle-intelligence": [
+    { label: "Movement Tracking", href: "/capabilities/movement-tracking" },
+    { label: "Traffic and Parking", href: "/solutions/traffic-parking" },
+    { label: "Traffic and Transportation", href: "/industries/traffic-transportation" }
+  ],
+  // Industries
+  manufacturing: [
+    { label: "Object Detection", href: "/capabilities/object-detection" },
+    { label: "Safety Monitoring", href: "/capabilities/safety-monitoring" },
+    { label: "Safety and Compliance", href: "/solutions/safety-compliance" }
+  ],
+  "offices-commercial-buildings": [
+    { label: "Occupancy Analytics", href: "/capabilities/occupancy-analytics" },
+    { label: "Facility Intelligence", href: "/solutions/facility-intelligence" },
+    { label: "Security Monitoring", href: "/solutions/security-monitoring" }
+  ],
+  "warehousing-logistics": [
+    { label: "Vehicle Intelligence", href: "/capabilities/vehicle-intelligence" },
+    { label: "Zone Monitoring", href: "/capabilities/zone-monitoring" },
+    { label: "Safety and Compliance", href: "/solutions/safety-compliance" }
+  ],
+  "textile-manufacturing": [
+    { label: "Safety Monitoring", href: "/capabilities/safety-monitoring" },
+    { label: "Object Detection", href: "/capabilities/object-detection" },
+    { label: "Safety and Compliance", href: "/solutions/safety-compliance" }
+  ],
+  retail: [
+    { label: "Occupancy Analytics", href: "/capabilities/occupancy-analytics" },
+    { label: "Security Monitoring", href: "/capabilities/security-monitoring" },
+    { label: "Facility Intelligence", href: "/solutions/facility-intelligence" }
+  ],
+  construction: [
+    { label: "Safety Monitoring", href: "/capabilities/safety-monitoring" },
+    { label: "Zone Monitoring", href: "/capabilities/zone-monitoring" },
+    { label: "Safety and Compliance", href: "/solutions/safety-compliance" }
+  ],
+  healthcare: [
+    { label: "Occupancy Analytics", href: "/capabilities/occupancy-analytics" },
+    { label: "Security Monitoring", href: "/capabilities/security-monitoring" },
+    { label: "Facility Intelligence", href: "/solutions/facility-intelligence" }
+  ],
+  education: [
+    { label: "Occupancy Analytics", href: "/capabilities/occupancy-analytics" },
+    { label: "Security Monitoring", href: "/capabilities/security-monitoring" },
+    { label: "Facility Intelligence", href: "/solutions/facility-intelligence" }
+  ],
+  "traffic-transportation": [
+    { label: "Vehicle Intelligence", href: "/capabilities/vehicle-intelligence" },
+    { label: "Traffic and Parking", href: "/solutions/traffic-parking" },
+    { label: "Movement Tracking", href: "/capabilities/movement-tracking" }
+  ],
+  "energy-utilities": [
+    { label: "Zone Monitoring", href: "/capabilities/zone-monitoring" },
+    { label: "Security Monitoring", href: "/capabilities/security-monitoring" },
+    { label: "Operational Visibility", href: "/solutions/operational-visibility" }
+  ],
+  "security-critical-infrastructure": [
+    { label: "Security Monitoring", href: "/capabilities/security-monitoring" },
+    { label: "Zone Monitoring", href: "/capabilities/zone-monitoring" },
+    { label: "Alerts and Incidents", href: "/platform/alerts-incidents" }
+  ],
+  // Solutions
+  "safety-compliance": [
+    { label: "Safety Monitoring", href: "/capabilities/safety-monitoring" },
+    { label: "Zone Monitoring", href: "/capabilities/zone-monitoring" },
+    { label: "Manufacturing and Factories", href: "/industries/manufacturing" }
+  ],
+  "/solutions/security-monitoring": [
+    { label: "Security Monitoring", href: "/capabilities/security-monitoring" },
+    { label: "Zone Monitoring", href: "/capabilities/zone-monitoring" },
+    { label: "Security and Critical Infrastructure", href: "/industries/security-critical-infrastructure" }
+  ],
+  "operational-visibility": [
+    { label: "Analytics", href: "/platform/analytics" },
+    { label: "Multi-Site Monitoring", href: "/platform/multi-site-monitoring" },
+    { label: "Occupancy Analytics", href: "/capabilities/occupancy-analytics" }
+  ],
+  "facility-intelligence": [
+    { label: "Occupancy Analytics", href: "/capabilities/occupancy-analytics" },
+    { label: "Multi-Site Monitoring", href: "/platform/multi-site-monitoring" },
+    { label: "Offices and Commercial Buildings", href: "/industries/offices-commercial-buildings" }
+  ],
+  "traffic-parking": [
+    { label: "Vehicle Intelligence", href: "/capabilities/vehicle-intelligence" },
+    { label: "Movement Tracking", href: "/capabilities/movement-tracking" },
+    { label: "Traffic and Transportation", href: "/industries/traffic-transportation" }
+  ]
+};
+
+export function getRelatedLinks(slugOrPath: string): RelatedLink[] {
+  return relatedLinks[slugOrPath] ?? relatedLinks[slugOrPath.split("/").pop() ?? ""] ?? [];
 }

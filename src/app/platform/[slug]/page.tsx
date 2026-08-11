@@ -3,6 +3,9 @@ import { DetailTemplate } from "@/components/sections/PageTemplates";
 import { platformPages } from "@/lib/data";
 import { createMetadata } from "@/lib/metadata";
 
+export const dynamic = "force-static";
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return platformPages.map((page) => ({ slug: page.slug }));
 }
@@ -13,7 +16,12 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const page = platformPages.find((item) => item.slug === slug);
   if (!page) return {};
-  return createMetadata({ title: page.title, description: page.metaDescription, path: `/platform/${page.slug}` });
+  return createMetadata({
+    title: page.title,
+    description: page.metaDescription,
+    path: `/platform/${page.slug}`,
+    titlePattern: "{title} | Visrax Platform"
+  });
 }
 
 export default async function PlatformDetailPage({ params }: PageProps) {

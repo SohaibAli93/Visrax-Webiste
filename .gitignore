@@ -18,3 +18,6 @@ tsconfig.tsbuildinfo
 
 # Intermediate image-generation workspace (site assets live in public/)
 generated-images/
+
+# Python virtual environment
+venv/

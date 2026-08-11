@@ -13,6 +13,7 @@ import { ScrollHero } from "@/components/sections/ScrollHero";
 import { IntroStatement } from "@/components/sections/IntroStatement";
 import { ScrollNarrative } from "@/components/sections/ScrollNarrative";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -38,6 +39,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <main>
+      <SmoothScroll />
       <ScrollHero />
       <IntroStatement />
       <TrustBar />

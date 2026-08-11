@@ -17,6 +17,10 @@ export default function IndustriesPage() {
       description="Factories, offices, warehouses, shops, roads, and more — Visrax fits the way each site works and the alerts each team needs."
       pages={industryPages}
       basePath="/industries"
+      body={[
+        "Each industry has its own set of situations to watch for — safety risks on a production floor, vehicles in a warehouse, after-hours activity in retail, or restricted zones around critical infrastructure.",
+        "Visrax is configured around the alerts and evidence that matter for the places you run, so your team sees what needs attention instead of watching every camera."
+      ]}
     />
   );
 }

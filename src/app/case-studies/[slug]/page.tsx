@@ -3,6 +3,9 @@ import { ArticleDetailPage } from "@/components/sections/PageTemplates";
 import { caseStudies } from "@/lib/data";
 import { createMetadata } from "@/lib/metadata";
 
+export const dynamic = "force-static";
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return caseStudies.map((article) => ({ slug: article.slug }));
 }

@@ -4,21 +4,33 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { CameraScene } from "@/components/visuals/CameraScene";
 import { DetailPage } from "@/lib/data";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { RelatedLinks } from "@/components/sections/RelatedLinks";
+import { absoluteUrl } from "@/lib/site";
 import { Reveal } from "@/components/motion/Reveal";
 import { SectionHeader } from "@/components/sections/SectionHeader";
+
+const SCHEMA_TYPE_BY_BASE: Record<string, { type: string; category: string }> = {
+  "/platform": { type: "SoftwareApplication", category: "BusinessApplication" },
+  "/capabilities": { type: "Product", category: "AI Video Analytics Software" },
+  "/solutions": { type: "Service", category: "AI Video Analytics Services" },
+  "/industries": { type: "Service", category: "AI Video Monitoring for Industry" }
+};
 
 export function ListingPage({
   eyebrow,
   title,
   description,
   pages,
-  basePath
+  basePath,
+  body
 }: {
   eyebrow: string;
   title: string;
   description: string;
   pages: DetailPage[];
   basePath: string;
+  body?: string[];
 }) {
   return (
     <>
@@ -33,6 +45,15 @@ export function ListingPage({
                 {title}
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-white/55">{description}</p>
+              {body && body.length > 0 ? (
+                <div className="mt-8 grid gap-5">
+                  {body.map((paragraph) => (
+                    <p key={paragraph} className="max-w-2xl text-base leading-7 text-white/50">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              ) : null}
             </Reveal>
             <Reveal delay={0.08}>
               <CameraScene compact label={eyebrow} />
@@ -69,6 +90,9 @@ export function ListingPage({
 }
 
 export function DetailTemplate({ page, basePath, parentLabel }: { page: DetailPage; basePath: string; parentLabel: string }) {
+  const schema = SCHEMA_TYPE_BY_BASE[basePath] ?? { type: "Service", category: "AI Video Analytics" };
+  const url = absoluteUrl(`${basePath}/${page.slug}`);
+
   return (
     <>
       <Breadcrumbs
@@ -76,6 +100,18 @@ export function DetailTemplate({ page, basePath, parentLabel }: { page: DetailPa
           { label: parentLabel, href: basePath },
           { label: page.title, href: `${basePath}/${page.slug}` }
         ]}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": schema.type,
+          name: page.title,
+          description: page.metaDescription,
+          category: schema.category,
+          brand: { "@type": "Brand", name: "Visrax" },
+          url,
+          provider: { "@type": "Organization", name: "Visrax", url: absoluteUrl("/") }
+        }}
       />
       <main className="page-shell">
         <section className="relative overflow-hidden">
@@ -136,6 +172,7 @@ export function DetailTemplate({ page, basePath, parentLabel }: { page: DetailPa
             </div>
           </div>
         </section>
+        <RelatedLinks slug={`${basePath}/${page.slug}`} />
       </main>
     </>
   );
@@ -194,7 +231,7 @@ export function ArticleDetailPage({
   basePath,
   parentLabel
 }: {
-  article: { slug: string; title: string; description: string; category: string; date: string; readTime: string; body: string[] };
+  article: { slug: string; title: string; description: string; category: string; date: string; readTime: string; author: string; body: string[] };
   basePath: string;
   parentLabel: string;
 }) {
@@ -205,6 +242,20 @@ export function ArticleDetailPage({
           { label: parentLabel, href: basePath },
           { label: article.title, href: `${basePath}/${article.slug}` }
         ]}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: article.title,
+          description: article.description,
+          articleSection: parentLabel,
+          datePublished: article.date,
+          dateModified: article.date,
+          author: { "@type": "Organization", name: article.author },
+          publisher: { "@type": "Organization", name: "Visrax", url: absoluteUrl("/") },
+          mainEntityOfPage: absoluteUrl(`${basePath}/${article.slug}`)
+        }}
       />
       <main className="page-shell">
         <article className="relative mx-auto max-w-3xl px-4 pb-20 pt-14 sm:px-6 lg:px-8">

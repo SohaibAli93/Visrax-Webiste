@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Manrope, Sora } from "next/font/google";
+import { Analytics } from "@/components/analytics/Analytics";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { absoluteUrl, getSiteUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -49,7 +49,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${sora.variable} ${manrope.variable} ${geistMono.variable}`}>
       <body>
-        <SmoothScroll />
         <Header />
         <div id="main-content">{children}</div>
         <Footer />
@@ -72,6 +71,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             description: siteConfig.description
           }}
         />
+        <Analytics />
       </body>
     </html>
   );

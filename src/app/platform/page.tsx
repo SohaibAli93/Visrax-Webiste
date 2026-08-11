@@ -17,6 +17,10 @@ export default function PlatformPage() {
       description="Live cameras, detection, tracking, alerts, reports, and multi-site visibility — everything your team needs in one place."
       pages={platformPages}
       basePath="/platform"
+      body={[
+        "The Visrax platform connects to cameras across your sites and brings live views, detection, tracking, alerts, and reports into one workspace.",
+        "Security, facilities, and operations teams get a single source of truth for what is happening — instead of checking separate systems for each location or camera."
+      ]}
     />
   );
 }

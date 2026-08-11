@@ -7,6 +7,8 @@ export const metadata = createMetadata({
   path: "/cookies"
 });
 
+export const robots = { index: false, follow: true };
+
 export default function CookiesPage() {
   const items = [
     "The public website can operate with essential functionality cookies.",

@@ -17,6 +17,10 @@ export default function SolutionsPage() {
       description="Whether you need safer workplaces, better security, clearer facility oversight, or traffic and parking visibility — Visrax turns your cameras into action."
       pages={solutionPages}
       basePath="/solutions"
+      body={[
+        "Solutions group the right capabilities around a specific outcome, so you don't have to configure a full system from scratch.",
+        "Start with the outcome that matters most — a safer workplace, tighter security, smoother facility operations, or better traffic flow — and add more as your needs grow."
+      ]}
     />
   );
 }

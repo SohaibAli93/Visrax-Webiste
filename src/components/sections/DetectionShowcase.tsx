@@ -196,7 +196,7 @@ function DetectionPanel({ tab }: { tab: Tab }) {
             >
               <Image
                 src={tab.image}
-                alt=""
+                alt={`Visrax ${tab.label.toLowerCase()} view with detection overlays`}
                 fill
                 sizes="(max-width: 1024px) 90vw, 420px"
                 className="object-cover object-center"

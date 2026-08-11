@@ -8,6 +8,7 @@ type MetadataInput = {
   type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
+  titlePattern?: string;
 };
 
 export function createMetadata({
@@ -16,10 +17,11 @@ export function createMetadata({
   path,
   type = "website",
   publishedTime,
-  modifiedTime
+  modifiedTime,
+  titlePattern
 }: MetadataInput): Metadata {
   const url = absoluteUrl(path);
-  const fullTitle = title.includes("Visrax") ? title : `${title} | Visrax`;
+  const fullTitle = titlePattern ? titlePattern.replace("{title}", title) : title.includes("Visrax") ? title : `${title} | Visrax`;
 
   return {
     title: fullTitle,
